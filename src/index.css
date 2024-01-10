@@ -66,3 +66,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Drawer */
+
+.MuiModal-root{
+  position: static !important;
+  z-index: auto !important;
+  padding:14px !important;
+}
+.popDrawer{
+  padding:20px;
+}
+.MuiModal-root .topic{
+  font-weight: bold;
+  font-size: 22px;
+  color:#101518;
+  margin:18px 0 0;
+  padding:0 18px;
+}
+
+.MuiModal-root .subTopic{
+  font-size: 14px;
+  color:#6E767A;
+  margin:6px;
+  padding:0 12px;
+}

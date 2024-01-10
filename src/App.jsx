@@ -13,7 +13,7 @@ import {scaleLinear} from 'd3-scale';
 import {MapboxOverlay} from '@deck.gl/mapbox';
 import {CSVLoader} from '@loaders.gl/csv';
 import {load} from '@loaders.gl/core';
-
+import Drawer from "./Drawer"
 
 // Sample data
 const DATA_URL =
@@ -44,7 +44,7 @@ const colorScale = scaleLinear()
 
 export default function App({data, noOverlap = true, fontSize = 32, mapStyle = MAP_STYLE}) {
   const [zoom, setZoom] = useState(INITIAL_VIEW_STATE.zoom);
-
+  const [currentInfo, setCurrentInfo]=useState({})
   //const onViewStateChange = useCallback(({viewState}) => {
   //  setZoom(viewState.zoom);
   //}, []);
@@ -102,27 +102,38 @@ export default function App({data, noOverlap = true, fontSize = 32, mapStyle = M
     extensions: [new CollisionFilterExtension()],
 
     // Interaction
+    
     interactive: true,
     pickable: true,
     onClick: info => {info.object.sizeScale = fontSize * 1.5; 
-                      console.log('Clicked on:', info.object)},
+                      console.log('Clicked on:', info.object)
+                      setCurrentInfo(info.object)
+                    },
+
   });
 
   return (
+    <>
+   <Drawer currentInfo={currentInfo}/>
     <DeckGL
       views={new MapView({repeat: false})}
       layers={[textLayer]}
       initialViewState={INITIAL_VIEW_STATE}
       onViewStateChange={onViewStateChange}
-      controller={{dragRotate: true}}
-      getCursor={() => "cursor"} 
+      controller={{touchRotate: true,dragRotate: true}}
+      getCursor={() => "cursor"}
+      
     >
+       
       <Map 
         mapboxAccessToken={mapboxAccessToken} 
         mapStyle={mapStyle} 
         preventStyleDiffing={true} 
       />
     </DeckGL>
+    
+    </>
+    
   );
 }
 
