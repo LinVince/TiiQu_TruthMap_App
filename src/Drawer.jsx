@@ -9,8 +9,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import KnowledgeSearch from "./components/Search";
-import More from "./components/More";
-import Overview from "./components/More";
+import Overview from "./components/Overview";
 import QuestionsAnswers from "./components/Questions&answer";
 
 export default function Knowledge_Drawer(props) {
@@ -81,19 +80,15 @@ export default function Knowledge_Drawer(props) {
         {/* Detail tab and content */}
         <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop:"20px" }}>
           <Tabs value={value} onChange={handleChange} aria-label="Knowlwdge">
-            <Tab label="Overview" {...a11yProps(0)} />
-            <Tab label="Questions & Answers" {...a11yProps(1)} />
-            <Tab label="More" {...a11yProps(2)} />
+            <Tab label="Questions & Answers" {...a11yProps(0)} />
+            <Tab label="Overview" {...a11yProps(1)} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-        <Overview /> 
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
           <QuestionsAnswers />
         </CustomTabPanel>
-        <CustomTabPanel value={value} index={2}>
-          <More />
+        <CustomTabPanel value={value} index={1}>
+          <Overview /> 
         </CustomTabPanel>
        
       </SwipeableDrawer>

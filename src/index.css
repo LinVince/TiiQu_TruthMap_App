@@ -91,3 +91,23 @@ button:focus-visible {
   margin:6px;
   padding:0 12px;
 }
+
+/* leftbar */
+.leftbar{
+  position:absolute;
+  z-index: 99999 !important;
+  background: #ffffff;
+  height:100%;
+  width:84px;
+  top:0;
+  left:0;
+  bottom: 0;
+}
+.logo{
+  position: relative;
+}
+.LogoUnderText{
+  position: absolute;
+  top:0px;
+  left:2px;
+}

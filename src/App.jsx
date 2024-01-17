@@ -14,6 +14,7 @@ import {MapboxOverlay} from '@deck.gl/mapbox';
 import {CSVLoader} from '@loaders.gl/csv';
 import {load} from '@loaders.gl/core';
 import Drawer from "./Drawer"
+import Leftbar from "./Leftbar"
 
 // Sample data
 const DATA_URL =
@@ -102,7 +103,7 @@ export default function App({data, noOverlap = true, fontSize = 32, mapStyle = M
     extensions: [new CollisionFilterExtension()],
 
     // Interaction
-    
+  
     interactive: true,
     pickable: true,
     onClick: info => {info.object.sizeScale = fontSize * 1.5; 
@@ -114,7 +115,10 @@ export default function App({data, noOverlap = true, fontSize = 32, mapStyle = M
 
   return (
     <>
-   <Drawer currentInfo={currentInfo}/>
+    <Leftbar/>
+    
+    {/* vision2 hidden */}
+    {/* <Drawer currentInfo={currentInfo}/> */}
     <DeckGL
       views={new MapView({repeat: false})}
       layers={[textLayer]}
@@ -122,9 +126,7 @@ export default function App({data, noOverlap = true, fontSize = 32, mapStyle = M
       onViewStateChange={onViewStateChange}
       controller={{touchRotate: true,dragRotate: true}}
       getCursor={() => "cursor"}
-      
     >
-       
       <Map 
         mapboxAccessToken={mapboxAccessToken} 
         mapStyle={mapStyle} 
